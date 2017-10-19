@@ -8,7 +8,7 @@ const promClient = require('prom-client');
 const register = promClient.register;
 
 const balance = new promClient.Gauge({
-    name: '1cloud_balance',
+    name: 'one_cloud_balance',
     help: 'account balance',
     labelNames: [
         'account_id',
