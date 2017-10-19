@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+
+# PROVIDE: one_cloud_balance_exporter
+# REQUIRE: DAEMON prometheus
+
+. /etc/rc.subr
+
+export PATH=${PATH}:/usr/local/bin
+name="one_cloud_balance_exporter"
+rcvar=one_cloud_balance_exporter_enable
+pidfile="/var/run/one_cloud_balance_exporter.pid"
+bin="/usr/local/bin/1cloud_balance_exporter"
+command="/usr/sbin/daemon"
+command_args="-f -t ${name} -P ${pidfile} ${bin}"
+
+load_rc_config $name
+run_rc_command "$1"
+
