@@ -1,4 +1,5 @@
 {
     "api_key": "",
-    "port": 3737
+    "port": 3737,
+    "interval": 5000,
 }

@@ -13,7 +13,6 @@ const balance = new promClient.Gauge({
     labelNames: [
         'account_id',
         'account_email',
-        'balance_till_date_utc',
     ],
 });
 
@@ -48,18 +47,14 @@ setInterval(() => {
 
         body = JSON.parse(body);
 
-        let date = body.BalanceTillDateUtc
-            .replace(/^(\d+)\-(\d+)\-(\d+)$/, '$3.$2.$1');
-
         balance.set({
             account_id: body.ID,
             account_email: body.Email,
-            balance_till_date_utc: date,
         }, body.Balance);
 
     });
 
-}, 5000);
+}, config.interval);
 
 console.log(`Server listening to ${config.port}, metrics exposed on /metrics endpoint`);
 server.listen(config.port);
